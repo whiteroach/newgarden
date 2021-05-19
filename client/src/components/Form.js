@@ -16,13 +16,13 @@ const Form = () => {
       ...formState,
       [e.target.name]: e.target.value,
     });
-    // console.log(formState);
+    console.log(formState);
   };
   const sendToBackend = (e) => {
     e.preventDefault();
-    console.log(formState);
+    // console.log(formState)
     axios
-      .post("http://localhost:8080/flowerForm", { formState })
+      .post("/flowerForm", { formState })
       .then((response) => {
         console.log(response.data);
         setSuccess(response.data.msg);
@@ -32,7 +32,7 @@ const Form = () => {
   return (
     <div>
       {/* <form onChange={handleChange} enctype="multipart/form-data"> */}
-      <p>{successMsg} </p>
+      <p>{successMsg}</p>
       <form onChange={handleChange}>
         {/* <form onChange={handleChange} onSubmit={sendToBackend}> */}
         <label for="plantName">Plant Name:</label>
@@ -41,8 +41,8 @@ const Form = () => {
         <input name="plantType" type="text" />
         <label for="description">Description:</label>
         <input name="description" type="text" />
-        {/* <label for="pic"></label>
-                <input name="pic" type="file">Picture</input> */}
+        {/* <label for="pic">Picture:</label>
+                <input name="pic" type="file"/>*/}
         <button type="submit" onClick={sendToBackend}>
           {" "}
           post{" "}
