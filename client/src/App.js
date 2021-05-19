@@ -1,12 +1,15 @@
-import './App.css';
-import Form from './components/Form'
+import React from 'react';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import Gallery from './components/Gallery';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Form/>
+    <div>
+      <Main />
+      <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App 
