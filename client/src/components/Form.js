@@ -31,13 +31,14 @@ const Form = () => {
         e.preventDefault();
         console.log(formState)
         const formData = new FormData()
-        // formData.append('plantName', formState.plantName)  
-        // formData.append('plantType', formState.plantType)  
-        // formData.append('description', formState.description)  
-        formData.append('formState', JSON.stringify(formState))
+        formData.append('plantName', formState.plantName)  
+        formData.append('plantType', formState.plantType)  
+        formData.append('description', formState.description)  
+        // formData.append('formState', JSON.stringify(formState))
+        // formData.append('formState', formState)
+        formData.append('pic', picture)   
         
-
-        formData.append('pic', picture)       
+        
         const config = {
             headers:{
                 'content-type':'multipart/form-data'

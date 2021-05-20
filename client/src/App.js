@@ -1,5 +1,6 @@
 import React from 'react';
 import Main from './components/Main';
+import Form from './components/Form'
 import Footer from './components/Footer';
 import Gallery from './components/Gallery';
 import {
@@ -18,13 +19,15 @@ const App = () => {
         <div>
             <Switch>
                 <Route exact path = '/' component = { Main } />
-                <Route exact path = '/gallery' component = { Gallery }/>
-                <Redirect to = '/' />
+                <Route  path = '/gallery' component = { Gallery }/>
+                <Route  path ='/flowerForm' component = { Form }/>
+                {/* <Redirect to = '/' /> */}
             </Switch>
 
             <Footer />
         </div>
     </Router>
+   
 )
   /* return (
     <div>
