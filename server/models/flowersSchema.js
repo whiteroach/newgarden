@@ -6,6 +6,7 @@ const flowerSchema = new schema(
       plantName:String,
       plantType:String,
       description:String,
+      plantPic:String,
     }
 );
 
