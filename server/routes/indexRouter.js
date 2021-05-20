@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const flower = require('../models/flowersSchema')
 const multer = require('multer')
@@ -27,4 +27,4 @@ router.post('/flowerForm', upload.single('pic'), (req, res)=>{
     })
 })
 
-module.exports = router
+module.exports = router;
