@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import Card from "./Card";
+import React, { useState, useEffect } from "react";
+import Card from "./card";
 import axios from "axios";
 
 const Main = () => {
-  const [flowerCards, setCard] = useState([]);
+  const [flowerCards, setCards] = useState([]);
+  useEffect(() => {
+    axios.get("/main").then((res) => {
+      console.log(res.data);
+      setCards(res.data);
+    });
+  }, []);
   return (
     <div>
       <nav className="navbar">
@@ -19,7 +25,19 @@ const Main = () => {
           </li>
         </ul>
       </nav>
-      <div className="card-wrapper"></div>
+      <div className="card-wrapper">
+        {flowerCards.map((flower, index) => {
+          return (
+            <Card
+              key={index}
+              plantName={flower.plantName}
+              plantType={flower.plantType}
+              description={flower.description}
+              pic={flower.plantPic}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
