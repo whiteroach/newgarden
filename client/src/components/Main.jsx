@@ -4,12 +4,21 @@ import axios from "axios";
 
 const Main = () => {
   const [flowerCards, setCards] = useState([]);
+  const [deleteMsg, setDeleteMsg] = useState();
   useEffect(() => {
     axios.get("/main").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setCards(res.data);
     });
-  }, [flowerCards]);
+  }, [deleteMsg]);
+
+  const deletePlant = (id) => {
+    axios.get("/main/delete/" + id).then((res) => {
+      console.log(res.data.msg);
+      setDeleteMsg(res.data);
+    });
+  };
+
   return (
     <div>
       <nav className="navbar">
@@ -29,11 +38,12 @@ const Main = () => {
         {flowerCards.map((flower, index) => {
           return (
             <Card
-              key={index}
+              key={flower._id}
               plantName={flower.plantName}
               plantType={flower.plantType}
               description={flower.description}
               pic={flower.plantPic}
+              onDelete={deletePlant}
             />
           );
         })}
