@@ -6,7 +6,7 @@ const Cards = ({ key, plantName, plantType, description, pic }) => {
         <h2>{plantName}</h2>
         {/* <img src={"/images/"+ {pic}}/> */}
         <img src={`/images/${pic}`} alt="flower" />
-        {/* <img src="/images/1621503877627_ps-wb-2-pic.jpg"/> */}
+        {/* <img src="/images/1621503877627_ps-wb-2-pic.jpg" alt="" /> */}
         <p>
           <i>quote</i>
         </p>

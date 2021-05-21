@@ -9,7 +9,7 @@ const Main = () => {
       console.log(res.data);
       setCards(res.data);
     });
-  }, []);
+  }, [flowerCards]);
   return (
     <div>
       <nav className="navbar">
