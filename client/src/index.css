@@ -112,7 +112,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(./darkblossing.jpeg);
+  background-image: url("../src/imgs/darkblossing.jpeg");
   background-size: cover;
   background-position: center;
   perspective: 100rem;
@@ -198,7 +198,7 @@ textarea{
 .gallery{
   display: grid;
   margin-top: 150rem;
-  grid-column:  / full-end;
+  grid-column:  full-end;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(7, 5vw );
 }
