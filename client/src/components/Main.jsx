@@ -13,9 +13,9 @@ const Main = () => {
   }, [deleteMsg]);
 
   const deletePlant = (id) => {
-    axios.get("/main/delete/" + id).then((res) => {
+    axios.delete("/main/delete/" + id).then((res) => {
       console.log(res.data.msg);
-      setDeleteMsg(res.data);
+      setDeleteMsg(res.data.msg);
     });
   };
 
