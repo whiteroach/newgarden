@@ -31,9 +31,6 @@ const Main = () => {
                     <li href="#" className="navbarLink">GALLERY</li>
                 </ul>
             </nav>
-<<<<<<< HEAD
-     </div>
-=======
             <div className = "card-wrapper">
                 <p>{deleteMsg}</p>
                 {
@@ -53,7 +50,6 @@ const Main = () => {
                 }
             </div>
         </div>
->>>>>>> 51f28c0eb8b894a84f52561553239900676d4317
     )
 }
 
