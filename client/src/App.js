@@ -3,6 +3,8 @@ import Main from './components/Main';
 import Form from './components/Form'
 import Footer from './components/Footer';
 import Gallery from './components/Gallery';
+import Form from './components/Form';
+// import Cards from './components/Cards';
 import {
   BrowserRouter as Router,
     Redirect,
@@ -10,6 +12,7 @@ import {
   Switch,
   useLocation
 } from "react-router-dom";
+
 
 
 const App = () => {
@@ -23,8 +26,10 @@ const App = () => {
                 <Route  path ='/flowerForm' component = { Form }/>
                 {/* <Redirect to = '/' /> */}
             </Switch>
-
+            <Form/>
+            {/* <Cards /> */}
             <Footer />
+           
         </div>
     </Router>
    
