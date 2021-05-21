@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const Main = () => {
     const [flowerCards, setCards] = useState([]);
+    const[deleteMsg, setDeleteMsg] = useState()
     useEffect(()=>{
         axios.get('/main')
         .then(
@@ -12,8 +13,15 @@ const Main = () => {
                 setCards(res.data)
             }
         )
+    },[deleteMsg])
+    const deletePlant = (id) => {
+       axios.delete('/main/delete/' + id)
+       .then((res)=>{
+        setDeleteMsg(res.data.msg)
+       })
+       
 
-    },[])
+    }
     return (
         <div>
             <nav className="navbar">
@@ -24,15 +32,18 @@ const Main = () => {
                 </ul>
             </nav>
             <div className = "card-wrapper">
+                <p>{deleteMsg}</p>
                 {
                     flowerCards.map((flower, index)=>{
                         return(
                             <Card
-                                key={index}
+                                key={flower._id}
+                                id={flower._id}
                                 plantName={flower.plantName}
                                 plantType={flower.plantType}
                                 description={flower.description}
                                 pic={flower.plantPic}
+                                onDelete={deletePlant}
                             /> 
                         )
                     })

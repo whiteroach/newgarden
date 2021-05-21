@@ -28,9 +28,13 @@ router.post('/flowerForm', upload.single('pic'), (req, res)=>{
         description:req.body.description,
         plantPic:req.file.filename,
     })
-    console.log(object)
-    newFlower.save().then()
-    res.json({msg:`${req.body.plantName} is successfully added!`})
+    // console.log(object)
+    newFlower.save((err,doc)=>{ 
+        console.log(req.body);
+        res.json({msg:`${doc.plantName} is successfully added!`})})
+    // res.json({msg:`${req.body.plantName} is successfully added!`})
+    // ()=>{}
+    // res.json('hex')
 })
 
 router.get('/main',(req,res) =>{
@@ -39,6 +43,14 @@ router.get('/main',(req,res) =>{
     })
 })
 
+router.delete('/main/delete/:id',(req,res)=>{
+    const itemsId = req.params.id
+    console.log(itemsId)
+    flower.findByIdAndDelete(itemsId, (err,doc)=>{
+        // res.json({msg:`${doc.plantName} is successfully deleted`})
+        res.json({msg:`${doc}is successfully deleted`})
+    })
+})
 // router.post()
 
 module.exports = router;
