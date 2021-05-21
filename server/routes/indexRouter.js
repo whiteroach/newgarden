@@ -13,18 +13,29 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.get("/flowerForm", (req, res) => {
-  res.send("flower");
-});
+// router.get("/flowerForm", (req, res) => {
+//   res.send("flower");
+// });
 router.post("/flowerForm", upload.single("pic"), (req, res) => {
   console.log(req.body, req.file);
   // console.log(JSON.parse(req.body), req.file)
   // const newFlower = new flower(req.body.formState)
-  // newFlower.save().then()
-  // res.json({msg:`${req.body.formState.plantName} is successfully added!`})
-  const newFlower = new flower({
-    // ????
+
+  // to post all data in gallery
+  router.get("/gallery", (req, res) => {
+    flower.find((err, flowers) => {
+      res.json(flowers);
+    });
   });
+
+  const newFlower = new flower({
+    plantName: req.body.plantName,
+    plantType: req.body.plantType,
+    description: req.body.description,
+    plantPic: req.file.filename,
+  });
+  newFlower.save().then();
+  res.json({ msg: `${req.body.plantName} is successfully added!` });
 });
 
 module.exports = router;
