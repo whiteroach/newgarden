@@ -15,6 +15,7 @@ app.use(express.static(__dirname + "/public"));
 
 //routes
 app.use("/", indexRouter);
+
 // app.post('/flowerForm', (req, res)=>{
 //     console.log('post from flower')
 // })
