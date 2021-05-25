@@ -3,7 +3,10 @@ import Main from './components/Main';
 import Form from './components/Form'
 import Footer from './components/Footer';
 import Gallery from './components/Gallery';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c1587f4cb0dd27824ccd92546647933d04042b1
 // import Cards from './components/Cards';
 import {
   BrowserRouter as Router,
