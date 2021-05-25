@@ -57,24 +57,28 @@ const Form = () => {
     
 
     return (
-        <div className = "dark-glass card card-form">
+        <div>
+            <div className = "dark-glass card card-form">
             {/* <form onChange={handleChange} enctype="multipart/form-data"> */}
-            <p>{successMsg}</p>
-            {/* <form onChange={handleChange} > */}
-            <form className = "card-form-form" onSubmit={sendToBackend}>
-                <label for="plantName">Plant Name:</label>
-                <input name="plantName" type="text" onChange={handleChange}/>
-                <label for="plantType">Plant Type:</label>
-                <input name="plantType" type="text" onChange={handleChange}/>
-                <label for="description">Description:</label>
-                <input name="description" type="text" onChange={handleChange}/>
-                <label for="pic">Picture:</label>
-                <input name="pic" type="file" onChange={handlePicChange}/>
-                {/* <button type="button" onClick={sendToBackend}> post </button> */}
-                <button type="submit" className = "btn"> post </button>
-                {/* <input type="" onSubmit={sendToBackend} value="post"/> */}
-            </form>
+                <p>{successMsg}</p>
+                {/* <form onChange={handleChange} > */}
+                <form className = "card-form-form" onSubmit={sendToBackend}>
+                    <label for="plantName">Plant Name:</label>
+                    <input name="plantName" type="text" onChange={handleChange}/>
+                    <label for="plantType">Plant Type:</label>
+                    <input name="plantType" type="text" onChange={handleChange}/>
+                    <label for="description">Description:</label>
+                    <input name="description" type="text" onChange={handleChange}/>
+                    <label for="pic">Picture:</label>
+                    <input name="pic" type="file" onChange={handlePicChange}/>
+                    {/* <button type="button" onClick={sendToBackend}> post </button> */}
+                    <button type="submit" className = "btn"> post </button>
+                    {/* <input type="" onSubmit={sendToBackend} value="post"/> */}
+                </form>
+            </div>
+            <button className = "gotobtn"><i className = "fas fa-arrow-up"></i> </button>
         </div>
+        
     )
 }
 
