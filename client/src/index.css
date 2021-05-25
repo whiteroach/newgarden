@@ -112,7 +112,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(./darkblossing.jpeg);
+  background-image: url(../src/imgs/darkblossing.jpeg);
   background-size: cover;
   background-position: center;
   perspective: 100rem;

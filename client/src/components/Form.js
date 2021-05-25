@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import FormLayout from './FormLayout';
 
 
 const Form = () => {
@@ -54,6 +55,8 @@ const Form = () => {
         // console.log(formData,'formData here')
     }
 
+    
+
     return (
         <div>
             {/* <form onChange={handleChange} enctype="multipart/form-data"> */}
@@ -72,6 +75,9 @@ const Form = () => {
                 <button type="submit"> post </button>
                 {/* <input type="" onSubmit={sendToBackend} value="post"/> */}
             </form>
+
+            <FormLayout />
+            
         </div>
     )
 }
