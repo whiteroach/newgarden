@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-import FormLayout from './FormLayout';
 
 
 const Form = () => {
@@ -58,11 +57,11 @@ const Form = () => {
     
 
     return (
-        <div>
+        <div className = "dark-glass card card-form">
             {/* <form onChange={handleChange} enctype="multipart/form-data"> */}
             <p>{successMsg}</p>
             {/* <form onChange={handleChange} > */}
-            <form onSubmit={sendToBackend}>
+            <form className = "card-form-form" onSubmit={sendToBackend}>
                 <label for="plantName">Plant Name:</label>
                 <input name="plantName" type="text" onChange={handleChange}/>
                 <label for="plantType">Plant Type:</label>
@@ -72,12 +71,9 @@ const Form = () => {
                 <label for="pic">Picture:</label>
                 <input name="pic" type="file" onChange={handlePicChange}/>
                 {/* <button type="button" onClick={sendToBackend}> post </button> */}
-                <button type="submit"> post </button>
+                <button type="submit" className = "btn"> post </button>
                 {/* <input type="" onSubmit={sendToBackend} value="post"/> */}
             </form>
-
-            <FormLayout />
-            
         </div>
     )
 }

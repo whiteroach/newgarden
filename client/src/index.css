@@ -175,6 +175,29 @@ textarea{
   letter-spacing: 4px;
 }
 
+.card-form-form{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 1.5rem;
+}
+
+.card-form-form label{
+  color: var(--yellow);
+  outline: none;
+}
+
+.card-form-form input{
+  background-color: transparent;
+  border-style: none;
+  border-bottom: 1px solid var(--yellow);
+  margin-top: 1rem;
+  
+}
+.card-form-form label, input{
+  margin: 1.9rem 2.3rem;
+}
+
 
 /* ********FOOTER***** */
 
@@ -200,10 +223,34 @@ textarea{
 .gallery{
   display: grid;
   margin-top: 150rem;
-  grid-column:  / full-end;
+  grid-column:   full-end;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(7, 5vw );
 }
+
+.btn{
+  text-transform: uppercase;
+  color: var(--yellow);
+  padding: 15px 40px;
+  display: block;
+  position: absolute;
+  right: center;
+  bottom: 5%;
+  width: 85%;
+  margin: 3rem;
+  border-radius: 5rem;
+  border: 3px solid var(--yellow);
+  background-color: transparent;
+  font-size: 2.5rem;
+  box-shadow: 3px 3px 11px 3px rgba(0, 0, 0, 0.3);
+}
+.btn:hover{
+  transform: translateY(-3px);
+  background-color: var(--yellow);
+  color: #712e5b;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
 
 
 

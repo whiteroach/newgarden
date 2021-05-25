@@ -17,7 +17,7 @@ const Cards = (props) => {
                         <div className="card-body">
                             <p>{ props.description}</p>
                         </div>
-                        <div className = "btn-container">
+                        <div className = "btn-container btn">
                             <button type="button" className = "card-btn" onClick={del}>delete</button>
                         </div>
             </div>

@@ -2,15 +2,11 @@ import React from 'react';
 import Main from './components/Main';
 import Form from './components/Form'
 import Footer from './components/Footer';
-import Gallery from './components/Gallery';
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c1587f4cb0dd27824ccd92546647933d04042b1
+// import Gallery from './components/Gallery';
 // import Cards from './components/Cards';
 import {
   BrowserRouter as Router,
-    Redirect,
+    // Redirect,
     Route,
   Switch,
   useLocation
@@ -25,24 +21,25 @@ const App = () => {
         <div>
             <Switch>
                 <Route exact path = '/' component = { Main } />
-                <Route  path = '/gallery' component = { Gallery }/>
+                {/* <Route  path = '/gallery' component = { Gallery }/> */}
                 <Route  path ='/flowerForm' component = { Form }/>
                 {/* <Redirect to = '/' /> */}
             </Switch>
             <Form/>
             {/* <Cards /> */}
             <Footer />
+            
            
         </div>
     </Router>
    
 )
-  return (
+  /* return (
     <div>
       <Main />
       <Footer />
     </div>
-  ) 
+  )  */
 }
 
-export default App 
+export default App;
