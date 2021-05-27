@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Form = () => {
@@ -6,14 +6,20 @@ const Form = () => {
     plantName: "",
     plantType: "",
     description: "",
-    // pic:{},
+    localId: "",
   });
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    setForm({
+      ...formState,
+      localId: user._id || null,
+    });
+  }, []);
   const [successMsg, setSuccess] = useState("");
   const [picture, setPicture] = useState();
 
   const handleChange = (e) => {
-    // e.preventDefault();
     setForm({
       ...formState,
       [e.target.name]: e.target.value,
@@ -32,9 +38,8 @@ const Form = () => {
     formData.append("plantName", formState.plantName);
     formData.append("plantType", formState.plantType);
     formData.append("description", formState.description);
-    // formData.append('formState', JSON.stringify(formState))
-    // formData.append('formState', formState)
     formData.append("pic", picture);
+    formData.append("localId", formState.localId);
 
     const config = {
       headers: {
@@ -47,6 +52,7 @@ const Form = () => {
       .then((response) => {
         // console.log(response.data);
         setSuccess(response.data.msg);
+        window.location.href = "/main";
       })
       .catch((error) => console.log(error));
     // console.log(formData,'formData here')
@@ -54,9 +60,7 @@ const Form = () => {
 
   return (
     <div>
-      {/* <form onChange={handleChange} enctype="multipart/form-data"> */}
       <p>{successMsg}</p>
-      {/* <form onChange={handleChange} > */}
       <form onSubmit={sendToBackend}>
         <label for="plantName">Plant Name:</label>
         <input name="plantName" type="text" onChange={handleChange} />
@@ -66,9 +70,13 @@ const Form = () => {
         <input name="description" type="text" onChange={handleChange} />
         <label for="pic">Picture:</label>
         <input name="pic" type="file" onChange={handlePicChange} />
-        {/* <button type="button" onClick={sendToBackend}> post </button> */}
-        <button type="submit"> post </button>
-        {/* <input type="" onSubmit={sendToBackend} value="post"/> */}
+        {/* <input
+          type="hidden"
+          value={}
+          name="localId"
+          onChange={handleChange}
+        /> */}
+        <button type="submit"> Add </button>
       </form>
     </div>
   );

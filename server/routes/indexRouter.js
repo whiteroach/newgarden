@@ -13,45 +13,40 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// router.get('/flowerForm', (req,res)=>{
-//     res.send('flower')
-// })
-router.post('/flowerForm', upload.single('pic'), (req, res)=>{
-    console.log(req.body, req.file)
-    // console.log(JSON.parse(req.body), req.file)
-    // const newFlower = new flower(req.body.formState)
-    // newFlower.save().then()
-    // res.json({msg:`${req.body.formState.plantName} is successfully added!`})
-    const newFlower = new flower({
-        plantName:req.body.plantName,
-        plantType:req.body.plantType,
-        description:req.body.description,
-        plantPic:req.file.filename,
-    })
-    // console.log(object)
-    newFlower.save((err,doc)=>{ 
-        console.log(req.body);
-        res.json({msg:`${doc.plantName} is successfully added!`})})
-    // res.json({msg:`${req.body.plantName} is successfully added!`})
-    // ()=>{}
-    // res.json('hex')
-})
-
-router.get("/main", (req, res) => {
-  flower.find((err, flowers) => {
-    // console.log(flowers);
-    res.json(flowers);
+router.post("/flowerForm", upload.single("pic"), (req, res) => {
+  console.log(req.body, req.file);
+  // console.log(req.session.user);
+  const newFlower = new flower({
+    plantName: req.body.plantName,
+    plantType: req.body.plantType,
+    description: req.body.description,
+    plantPic: req.file.filename,
+    // added_by: req.session.user._id,
+    // added_by: "60acfd855c24a86b3772a7f6",
+    added_by: req.body.localId,
+  });
+  // console.log(object)
+  newFlower.save((err, doc) => {
+    console.log(req.body);
+    res.json({ msg: `${doc.plantName} is successfully added!` });
   });
 });
 
-router.delete('/main/delete/:id',(req,res)=>{
-    const itemsId = req.params.id
-    console.log(itemsId)
-    flower.findByIdAndDelete(itemsId, (err,doc)=>{
-        // res.json({msg:`${doc.plantName} is successfully deleted`})
-        res.json({msg:`${doc}is successfully deleted`})
+router.get("/main", (req, res) => {
+  flower
+    .find((err, flowers) => {
+      // console.log(flowers);
+      res.json(flowers);
     })
-})
-// router.post()
+    .populate("added_by");
+});
+
+router.delete("/main/delete/:id", (req, res) => {
+  const itemsId = req.params.id;
+  console.log(itemsId);
+  flower.findByIdAndDelete(itemsId, (err, doc) => {
+    res.json({ msg: `${doc.plantName} is successfully deleted` });
+  });
+});
 
 module.exports = router;
