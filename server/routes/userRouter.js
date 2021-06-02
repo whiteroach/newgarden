@@ -18,6 +18,30 @@ router.post("/signUp", (req, res) => {
   });
 });
 
+// login using JWT
+const jwt = require("jsonwebtoken");
+
+//**** */ here are bugs for token ******
+
+router.post("/loginByJWT", (req, res) => {
+  User.findOne({ email: req.body.email }, (err, data) => {
+    // const { username, password } = req.body;
+    // const data = req.body;
+    console.log(data, `is comming`);
+    // console.log(req.body);
+    const secret = process.env.JWT_SECRET;
+    const token = jwt.sign(data, secret, {
+      expiresIn: "1d", // 60*60*24
+      algorithm: "HS256",
+    });
+    res.json(token);
+    // console.log("Data before encode:", data);
+
+    console.log(`After encode the data is: ${token} `);
+  });
+});
+
+// Log in
 router.post("/login", (req, res) => {
   User.findOne({ username: req.body.username }, (err, data) => {
     console.log(req.body);

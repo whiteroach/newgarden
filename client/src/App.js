@@ -1,10 +1,11 @@
 import React from "react";
 import Main from "./components/Main";
-import Form from "./components/Form";
+import FlowerForm from "./components/FlowerForm";
 import Footer from "./components/Footer";
 // import Gallery from "./components/Gallery";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+// import LogInPassport from "./components/LogInPassport";
 // import Cards from './components/Cards';
 import {
   BrowserRouter as Router,
@@ -21,7 +22,7 @@ const App = () => {
   // };
 
   const logout = () => {
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentToken");
     window.location.href = "/user/login";
   };
 
@@ -33,10 +34,12 @@ const App = () => {
 
           {/* <Route path="/user/signUp" component={SignUp} /> */}
           <Route path="/user/login" component={Login} />
+          {/* <Route path="/user/loginpassport" component={LogInPassport} /> */}
+
           <Route exact path="/main" component={Main} />
 
           {/* <Route path="/gallery" component={Gallery} /> */}
-          <Route path="/flowerForm" component={Form} />
+          <Route path="/flowerForm" component={FlowerForm} />
           {/* <Redirect to = '/' /> */}
         </Switch>
         {/* <Form/> */}
@@ -49,12 +52,6 @@ const App = () => {
       </div>
     </Router>
   );
-  /* return (
-    <div>
-      <Main />
-      <Footer />
-    </div>
-  ) */
 };
 
 export default App;

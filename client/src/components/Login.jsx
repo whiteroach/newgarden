@@ -2,30 +2,26 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Login = () => {
-  const [login, setLogin] = useState({
+  const [user, setUser] = useState({
     username: "",
     password: "",
   });
   // const [user, setUser] = useState();
   const [msg, setMsg] = useState("");
   const handleChange = (e) => {
-    setLogin({
-      ...login,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value,
     });
   };
 
   const send = (e) => {
     e.preventDefault();
-    if (login.username !== "" && login.email !== "") {
-      axios.post("/user/login", login).then((res) => {
+    if (user.username !== "" && user.email !== "") {
+      // JWT (JsonWebToken)
+      axios.post("/user/loginByJWT", user).then((res) => {
         console.log(res.data);
-
-        setLogin({
-          username: "",
-          password: "",
-        });
-        localStorage.setItem("currentUser", JSON.stringify(res.data));
+        localStorage.setItem("currentToken", res.data);
         window.location.href = "/flowerForm";
       });
     } else {
@@ -40,14 +36,14 @@ const Login = () => {
         <input
           type="text"
           name="username"
-          value={login.username}
+          value={user.username}
           onChange={handleChange}
         />
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           name="password"
-          value={login.password}
+          value={user.password}
           onChange={handleChange}
         />
         <button type="submit">log in</button>

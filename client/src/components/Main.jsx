@@ -6,7 +6,7 @@ const Main = () => {
   const [flowerCards, setCards] = useState([]);
   const [deleteMsg, setDeleteMsg] = useState();
   useEffect(() => {
-    const user = localStorage.getItem("currentUser");
+    const user = JSON.parse(localStorage.getItem("currentToken"));
     axios.get("/main").then((res) => {
       // console.log(res.data);
       setCards(res.data);

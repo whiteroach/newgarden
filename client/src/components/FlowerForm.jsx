@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import JwtDecode from "jwt-decode";
 
-const Form = () => {
+const FlowerForm = () => {
+  const [successMsg, setSuccess] = useState("");
+  const [picture, setPicture] = useState();
   const [formState, setForm] = useState({
     plantName: "",
     plantType: "",
@@ -10,14 +13,16 @@ const Form = () => {
   });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const user = localStorage.getItem("currentToken");
+    console.log(user);
+    const decode = JwtDecode(user);
+    console.log(decode);
+
     setForm({
       ...formState,
-      localId: user._id || null,
+      localId: decode.username || null,
     });
   }, []);
-  const [successMsg, setSuccess] = useState("");
-  const [picture, setPicture] = useState();
 
   const handleChange = (e) => {
     setForm({
@@ -51,6 +56,7 @@ const Form = () => {
       .post("http://localhost:8080/flowerForm", formData, config)
       .then((response) => {
         // console.log(response.data);
+        // const successMsg = response.data
         setSuccess(response.data.msg);
         window.location.href = "/main";
       })
@@ -59,9 +65,9 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <p>{successMsg}</p>
-      <form onSubmit={sendToBackend}>
+    <div className="dark-glass card card-form">
+      {/* <p>{successMsg}</p> */}
+      <form className="card-form-form" onSubmit={sendToBackend}>
         <label for="plantName">Plant Name:</label>
         <input name="plantName" type="text" onChange={handleChange} />
         <label for="plantType">Plant Type:</label>
@@ -76,10 +82,16 @@ const Form = () => {
           name="localId"
           onChange={handleChange}
         /> */}
-        <button type="submit"> Add </button>
+        <button type="submit" className="btn">
+          {" "}
+          Add{" "}
+        </button>
       </form>
+      <button className="gotobtn">
+        <i className="fas fa-arrow-up"></i>{" "}
+      </button>
     </div>
   );
 };
 
-export default Form;
+export default FlowerForm;

@@ -8,11 +8,11 @@ const flowerSchema = new Schema({
   plantPic: String,
   localId: String,
   added_by: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, // accept only user id.***
     ref: "User",
   },
 });
 
-const flowers = mongoose.model("flowers", flowerSchema);
+const Flower = mongoose.model("Flower", flowerSchema);
 
-module.exports = flowers;
+module.exports = Flower;
