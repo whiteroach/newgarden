@@ -13,18 +13,18 @@ const newUser = new Schema({
     required: [true, "Username is required!"],
   },
 
-  name: {
-    firstName: {
-      type: String,
-      required: [true, "Please enter your first name"],
-      default: "Test",
-    },
-    lastName: {
-      type: String,
-      required: [true, "Please enter your last name"],
-      default: "Last name",
-    },
-  },
+  // name: {
+  //   firstName: {
+  //     type: String,
+  //     required: [true, "Please enter your first name"],
+  //     default: "Test",
+  //   },
+  //   lastName: {
+  //     type: String,
+  //     required: [true, "Please enter your last name"],
+  //     default: "Last name",
+  //   },
+  // },
 
   email: {
     type: String,

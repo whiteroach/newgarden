@@ -6,13 +6,13 @@ const Main = () => {
   const [flowerCards, setCards] = useState([]);
   const [deleteMsg, setDeleteMsg] = useState();
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("currentToken"));
-    axios.get("/main").then((res) => {
-      // console.log(res.data);
+    const user = localStorage.getItem("currentToken");
+    axios.get("http://localhost:8080/main").then((res) => {
+      console.log(res.data);
       setCards(res.data);
       setDeleteMsg(null);
     });
-  }, [deleteMsg]);
+  }, []);
 
   const deletePlant = (id) => {
     axios.delete("/main/delete/" + id).then((res) => {
@@ -25,14 +25,20 @@ const Main = () => {
     <div>
       <nav className="navbar">
         <ul className="navbarList">
-          <li href="#" className="navbarLink">
-            ABOUT
+          <li>
+            <a href="/about" className="navbarLink">
+              About
+            </a>
           </li>
-          <li href="#" className="navbarLink">
-            CONTACT
+          <li>
+            <a href="/main" className="navbarLink">
+              Flowers
+            </a>
           </li>
-          <li href="#" className="navbarLink">
-            GALLERY
+          <li>
+            <a href="/gallery" className="navbarLink">
+              Gallery
+            </a>
           </li>
         </ul>
       </nav>
@@ -40,7 +46,7 @@ const Main = () => {
         <p>{deleteMsg} </p>
         {flowerCards.map((flower, index) => {
           console.log(flower.added_by);
-          // console.log(flower);
+          console.log(flower, "from front");
 
           return (
             <Card

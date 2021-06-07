@@ -13,17 +13,17 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.post("/flowerForm", upload.single("pic"), async (req, res) => {
-  console.log(req.body, req.file);
+router.post("/flowerForm", upload.single("pic"), (req, res) => {
+  // console.log(req.body, req.file);
   // console.log(req.session.user);
-  const newFlower = await new Flower({
+  const newFlower = new Flower({
     plantName: req.body.plantName,
     plantType: req.body.plantType,
     description: req.body.description,
     plantPic: req.file.filename,
     // added_by: req.session.user._id,
-    added_by: "60acfd855c24a86b3772a7f6",
-    // added_by: req.body.localId,
+    // added_by: "60acfd855c24a86b3772a7f6",
+    added_by: req.body.localId,
   });
   console.log(req.body, `is added`);
 
@@ -33,12 +33,13 @@ router.post("/flowerForm", upload.single("pic"), async (req, res) => {
 });
 
 router.get("/main", (req, res) => {
-  flower
-    .find((err, flowers) => {
-      // console.log(flowers);
-      res.json(flowers);
-    })
-    .populate("added_by");
+  Flower.find((err, flowers) => {
+    console.log(flowers, "are here");
+    res.json(flowers);
+  })
+    .populate("added_by")
+    .sort({ _id: -1 })
+    .exec();
 });
 
 router.delete("/main/delete/:id", (req, res) => {

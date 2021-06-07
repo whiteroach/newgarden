@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JwtDecode from "jwt-decode";
+import NavBar from "./NavBar";
 
 const FlowerForm = () => {
   const [successMsg, setSuccess] = useState("");
@@ -20,7 +21,7 @@ const FlowerForm = () => {
 
     setForm({
       ...formState,
-      localId: decode.username || null,
+      localId: decode.id || null,
     });
   }, []);
 
@@ -65,31 +66,34 @@ const FlowerForm = () => {
   };
 
   return (
-    <div className="dark-glass card card-form">
-      {/* <p>{successMsg}</p> */}
-      <form className="card-form-form" onSubmit={sendToBackend}>
-        <label for="plantName">Plant Name:</label>
-        <input name="plantName" type="text" onChange={handleChange} />
-        <label for="plantType">Plant Type:</label>
-        <input name="plantType" type="text" onChange={handleChange} />
-        <label for="description">Description:</label>
-        <input name="description" type="text" onChange={handleChange} />
-        <label for="pic">Picture:</label>
-        <input name="pic" type="file" onChange={handlePicChange} />
-        {/* <input
+    <div>
+      <NavBar />
+      <div className="dark-glass card card-form">
+        {/* <p>{successMsg}</p> */}
+        <form className="card-form-form" onSubmit={sendToBackend}>
+          <label for="plantName">Plant Name:</label>
+          <input name="plantName" type="text" onChange={handleChange} />
+          <label for="plantType">Plant Type:</label>
+          <input name="plantType" type="text" onChange={handleChange} />
+          <label for="description">Description:</label>
+          <input name="description" type="text" onChange={handleChange} />
+          <label for="pic">Picture:</label>
+          <input name="pic" type="file" onChange={handlePicChange} />
+          {/* <input
           type="hidden"
           value={}
           name="localId"
           onChange={handleChange}
         /> */}
-        <button type="submit" className="btn">
-          {" "}
-          Add{" "}
+          <button type="submit" className="btn">
+            {" "}
+            Add{" "}
+          </button>
+        </form>
+        <button className="gotobtn">
+          <i className="fas fa-arrow-up"></i>{" "}
         </button>
-      </form>
-      <button className="gotobtn">
-        <i className="fas fa-arrow-up"></i>{" "}
-      </button>
+      </div>
     </div>
   );
 };

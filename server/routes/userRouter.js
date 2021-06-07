@@ -25,36 +25,43 @@ const jwt = require("jsonwebtoken");
 
 router.post("/loginByJWT", (req, res) => {
   User.findOne({ email: req.body.email }, (err, data) => {
-    // const { username, password } = req.body;
-    // const data = req.body;
-    console.log(data, `is comming`);
-    // console.log(req.body);
-    const secret = process.env.JWT_SECRET;
-    const token = jwt.sign(data, secret, {
-      expiresIn: "1d", // 60*60*24
-      algorithm: "HS256",
-    });
-    res.json(token);
-    // console.log("Data before encode:", data);
+    // console.log(data, `is coming`);
+    if (data == null) {
+      res.json({ msg: "Username not found!" });
+    } else {
+      bcrypt.compare(req.body.password, data.password, (err, result) => {
+        if (result) {
+          const secret = process.env.JWT_SECRET;
+          const token = jwt.sign({ id: data._id }, secret, {
+            expiresIn: "1d", // 60*60*24
+            algorithm: "HS256",
+          });
+          res.json(token);
+          // console.log(token, "is here");
+        } else {
+          res.json({ msg: "Incorrect Password!" });
+        }
+      });
+    }
 
-    console.log(`After encode the data is: ${token} `);
+    // console.log(`After encode the data is: ${token} `);
   });
 });
 
-// Log in
-router.post("/login", (req, res) => {
-  User.findOne({ username: req.body.username }, (err, data) => {
-    console.log(req.body);
-    bcrypt.compare(req.body.password, data.password, (err, result) => {
-      if (result) {
-        console.log(data);
-        // req.session.user = data;
-        // req.session.msg = "successfully logged in";
-        // res.json(req.session.user.username);
-        res.json(data);
-      }
-    });
-  });
-});
+// // Log in
+// router.post("/login", (req, res) => {
+//   User.findOne({ username: req.body.username }, (err, data) => {
+//     console.log(req.body);
+//     bcrypt.compare(req.body.password, data.password, (err, result) => {
+//       if (result) {
+//         console.log(data);
+//         // req.session.user = data;
+//         // req.session.msg = "successfully logged in";
+//         // res.json(req.session.user.username);
+//         res.json(data);
+//       }
+//     });
+//   });
+// });
 
 module.exports = router;

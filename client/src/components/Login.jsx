@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Login = () => {
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   // const [user, setUser] = useState();
@@ -17,7 +17,7 @@ const Login = () => {
 
   const send = (e) => {
     e.preventDefault();
-    if (user.username !== "" && user.email !== "") {
+    if (user.email !== "") {
       // JWT (JsonWebToken)
       axios.post("/user/loginByJWT", user).then((res) => {
         console.log(res.data);
@@ -32,11 +32,11 @@ const Login = () => {
   return (
     <div>
       <form onSubmit={send}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Email:</label>
         <input
           type="text"
-          name="username"
-          value={user.username}
+          name="email"
+          value={user.email}
           onChange={handleChange}
         />
         <label htmlFor="password">Password:</label>
@@ -46,7 +46,7 @@ const Login = () => {
           value={user.password}
           onChange={handleChange}
         />
-        <button type="submit">log in</button>
+        <button type="submit">Log in</button>
       </form>
       <p>{msg} </p>
     </div>

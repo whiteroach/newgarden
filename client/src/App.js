@@ -2,7 +2,7 @@ import React from "react";
 import Main from "./components/Main";
 import FlowerForm from "./components/FlowerForm";
 import Footer from "./components/Footer";
-// import Gallery from "./components/Gallery";
+import Gallery from "./components/Gallery";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 // import LogInPassport from "./components/LogInPassport";
@@ -36,9 +36,9 @@ const App = () => {
           <Route path="/user/login" component={Login} />
           {/* <Route path="/user/loginpassport" component={LogInPassport} /> */}
 
-          <Route exact path="/main" component={Main} />
+          <Route path="/main" component={Main} />
 
-          {/* <Route path="/gallery" component={Gallery} /> */}
+          <Route path="/gallery" component={Gallery} />
           <Route path="/flowerForm" component={FlowerForm} />
           {/* <Redirect to = '/' /> */}
         </Switch>
